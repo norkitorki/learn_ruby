@@ -9,11 +9,12 @@ class Timer
   end
   
   def time_string
-    (@timer + @seconds).strftime "%H:%M:%S"
+    hours = (@seconds / 3600) < 10 ? "0#{(@seconds / 3600)}" : (@seconds / 3600)
+    "#{hours}:#{(@timer + @seconds).strftime "%M:%S"}"
   end
 end
 
-# "sprintf" Method Variant below:
+# ///  "sprintf" Method Variant below /// #
 
 class Timer
   attr_writer:seconds
@@ -31,6 +32,7 @@ class Timer
 
   def time_string
     timer = @timer + @seconds
-    "#{padded(timer.hour)}:#{padded(timer.min)}:#{padded(timer.sec)}"
+    hours = (@seconds / 3600)
+    "#{padded(hours)}:#{padded(timer.min)}:#{padded(timer.sec)}"
   end
 end
